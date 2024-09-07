@@ -6,7 +6,7 @@ set type (termux-dialog spinner \
   yq .text)
 
 set volume (termux-dialog spinner \
-    -t "Choose the volume for $type"
+    -t "Choose the volume for $type" \
     -v minimal,normal,highest |
     yq .text)
 
