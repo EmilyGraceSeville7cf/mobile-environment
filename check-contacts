@@ -4,23 +4,33 @@ function style --argument-names color text
     gum style --foreground=$color $text
 end
 
-function error --argument-names name message
+function error --argument-names name
     set name (string escape --style script -- $name)
 
-    echo "- Contact $(style '#5de45e' $name) $message"
+    echo "- $(style '#5de45e' $name)"
 end
 
 set contacts (termux-contact-list |
     yq --no-colors ".[]")
+
+echo "With $(style '#c9528f' 'spaces inside a number'):"
 
 for item in $contacts
     set name (echo $item | yq ".name")
     set number (echo $item | yq ".number")
 
     string match --quiet --regex '\s' -- $number &&
-        error $name "contains spaces inside a number"
+        error $name
+end
+
+echo
+echo "With name not matching $(style '#c9528f' '\'{{person_name}} ({{work_place_category}}, {{city}}, {{work_place}})\''):"
+
+for item in $contacts
+    set name (echo $item | yq ".name")
+
     string match --quiet --regex '\w+ \(\w[A-z ]+, \w[A-z ]+, \w[A-z ]+\)' -- $number ||
-        error $name "doesn't match the $(style '#e5bf5a' '{{person_name}} ({{work_place_category}}, {{city}}, {{work_place}})') pattern"
+        error $name
 end
 
 read --prompt-str="Press any key to continue..." --nchars=1
