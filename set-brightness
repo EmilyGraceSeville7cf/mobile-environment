@@ -1,0 +1,15 @@
+#!/data/data/com.termux/files/usr/bin/env fish
+
+set mode (termux-dialog sheet \
+  -v minimal,normal,highest \
+  -t "Choose the brightness" |
+  yq .text)
+
+switch $mode
+  case minimal
+    termux-brightness 10
+  case normal
+    termux-brightness 50
+  case highest
+    termux-brightness 100
+end
