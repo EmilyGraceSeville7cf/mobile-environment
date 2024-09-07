@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/env fish
 
-set type (termux-dialog sheet \
+set type (termux-dialog spinner \
   -t "Choose the target" \
   -v alarm,music,notification,ring,system,call |
   yq .text)
