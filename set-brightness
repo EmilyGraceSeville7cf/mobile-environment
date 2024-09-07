@@ -1,8 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/env fish
 
-set mode (termux-dialog sheet \
-  -v minimal,normal,highest \
-  -t "Choose the brightness" |
+set mode (termux-dialog spinner \
+  -t "Choose the brightness" \
+  -v minimal,normal,highest |
   yq .text)
 
 switch $mode
