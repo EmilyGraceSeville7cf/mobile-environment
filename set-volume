@@ -1,0 +1,20 @@
+#!/data/data/com.termux/files/usr/bin/env fish
+
+set type (termux-dialog sheet \
+  -t "Choose the target" \
+  -v alarm,music,notification,ring,system,call |
+  yq .text)
+
+set volume (termux-dialog spinner \
+    -t "Choose the volume for $type"
+    -v minimal,normal,highest |
+    yq .text)
+
+switch $volume
+    case minimal
+        termux-volume $type 5
+    case normal
+        termux-volume $type 10
+    case highest
+        termux-volume $type 15
+end
