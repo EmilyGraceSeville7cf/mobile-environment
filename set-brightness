@@ -6,10 +6,10 @@ set mode (termux-dialog sheet \
   yq .text)
 
 switch $mode
-  case minimal
-    termux-brightness 10
-  case normal
-    termux-brightness 50
-  case highest
-    termux-brightness 100
+    case minimal
+        termux-brightness 10
+    case normal
+        termux-brightness 50
+    case highest
+        termux-brightness 100
 end
