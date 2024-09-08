@@ -12,8 +12,7 @@ test "$(get $language_info code)" != $success && exit
 set language (get $language_info text)
 
 set name_info (text "🏷️ Choose the project name")
-echo "DEBUG: $name_info" >&2
-test "$(get $name_info code)" != $success && exit
+test "$(get "$name_info" code)" != $success && exit
 set name (get $name_info text)
 
 set visibility_info "$(spinner "👁️ Choose the visibility" public private)"
