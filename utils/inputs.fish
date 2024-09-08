@@ -15,8 +15,8 @@ function spinner --argument-names title
 end
 
 function text --argument-names title
-    set info (termux-dialog text \
-                -t "$title")
+    set info "$(termux-dialog text \
+                -t "$title")"
     
     set hint
 
@@ -25,7 +25,7 @@ function text --argument-names title
     end
     
     while test "$(get $info code)" = $success && test -z "$(get $info text)"
-        set info (termux-dialog text \
-            -t "$title" $hint)
+        set info "$(termux-dialog text \
+            -t "$title" $hint)"
     end
 end
