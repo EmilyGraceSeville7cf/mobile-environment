@@ -14,5 +14,5 @@ function text --argument-names title
 end
 
 function get --argument-names input field
-    echo $input | yq .$field
+    echo $input | yq --input-format=json .$field
 end
