@@ -28,4 +28,6 @@ function text --argument-names title
         set info "$(termux-dialog text \
             -t "$title" $hint)"
     end
+
+    echo "$info"
 end
