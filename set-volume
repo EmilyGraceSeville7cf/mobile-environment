@@ -2,12 +2,12 @@
 
 source /data/data/com.termux/files/home/.shortcuts/utils/inputs.fish
 
-set type_info (spinner "Choose the target" alarm music notification ring system call)
-test (get $type_info code) != 0 && exit
+set type_info "$(spinner "Choose the target" alarm music notification ring system call)"
+test "$(get $type_info code)" != 0 && exit
 set type (get $type_info text)
 
-set volume_info (spinner "Choose the volume for $type" minimal normal highest)
-test (get $volume_info code) != 0 && exit
+set volume_info "$(spinner "Choose the volume for $type" minimal normal highest)"
+test "$(get $volume_info code)" != 0 && exit
 set volume (get $volume_info text)
 
 set volume_integer 5
