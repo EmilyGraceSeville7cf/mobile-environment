@@ -1,15 +1,19 @@
 #!/data/data/com.termux/files/usr/bin/env fish
 
-set mode (termux-dialog spinner \
-  -t "Choose the brightness" \
-  -v minimal,normal,highest |
-  yq .text)
+source /data/data/com.termux/files/home/.shortcuts/utils/inputs.fish
+source /data/data/com.termux/files/home/.shortcuts/utils/constants.fish
+
+set brightness_info "$(spinner "🌞 Choose the brightness" minimal normal highest)"
+test "$(get $brightness_info code)" != $success && exit
+set brightness (get $brightness_info text)
+
+set brightness_integer 10
 
 switch $mode
-    case minimal
-        termux-brightness 10
     case normal
-        termux-brightness 50
+        set brightness_integer 50
     case highest
-        termux-brightness 100
+        set brightness_integer 100
 end
+
+termux-brightness $brightness_integer
