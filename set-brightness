@@ -9,7 +9,7 @@ set brightness (get $brightness_info text)
 
 set brightness_integer 10
 
-switch $mode
+switch $brightness
     case normal
         set brightness_integer 50
     case highest
