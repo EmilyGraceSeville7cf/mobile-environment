@@ -20,21 +20,21 @@ function text --argument-names title
 
     set hint
 
-    test "$(get "$info" code)" != $success && begin
+    test "$(get $info code)" != $success && begin
         echo "$info"
         return
     end
 
-    if test "$(get "$info" code)" = $success && test -z "$(get "$info" text)"
+    if test "$(get $info code)" = $success && test -z "$(get $info text)"
         set hint -i "❌ not empty input"
     end
 
-    while test "$(get "$info" code)" = $success && test -z "$(get "$info" text)"
+    while test "$(get $info code)" = $success && test -z "$(get $info text)"
         set info "$(termux-dialog text \
             -t "$title" $hint)"
 
-        test "$(get "$info" code)" != $success && break
+        test "$(get $info code)" != $success && break
     end
 
-    echo "$info"
+    echo $info
 end
