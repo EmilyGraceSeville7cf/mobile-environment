@@ -11,7 +11,7 @@ set language_info "$(spinner "💻 Choose the language" fish go javascript tinys
 test "$(get $language_info code)" != $success && exit
 set language (get $language_info text)
 
-set name_info (text "Choose the project name")
+set name_info (text "🏷️ Choose the project name")
 test "$(get $name_info code)" != $success && exit
 set name (get $name_info text)
 
