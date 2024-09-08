@@ -34,7 +34,7 @@ for item in $contacts
     set name (echo $item | yq ".name")
 
     string match --quiet --regex '\w+ \(\w[A-z ]+, \w[A-z ]+, \w[A-z ]+\)' -- $number ||
-        error $name "doesn't match the pattern)"
+        error $name "doesn't match the pattern"
 end
 
 read --prompt-str="Press any key to continue..." --nchars=1
