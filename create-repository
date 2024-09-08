@@ -14,4 +14,9 @@ set name (termux-dialog text \
             -t "Choose the project name" |
             yq .text)
 
-gh repo create "$language-$type-$name" --license mit
+set visibility (termux-dialog spinner \
+                -t "Choose the project visibility" \
+                -v public,private |
+                yq .text)
+
+gh repo create "$language-$type-$name" --$visibility --license mit
