@@ -19,4 +19,4 @@ set visibility_info "$(spinner "👁️ Choose the visibility" public private)"
 test "$(get $visibility_info code)" != $success && exit
 set visibility (get $visibility_info text)
 
-gh repo create "$language-$type-$name" --$visibility --license mit
+gh repo create "$language-$type-$name" --$visibility --license mit --disable-wiki
