@@ -1,22 +1,22 @@
 #!/data/data/com.termux/files/usr/bin/env fish
 
-set type (termux-dialog spinner \
-    -t "Choose the project type" \
-    -v gui,tui,cli,library |
-    yq .text)
+source /data/data/com.termux/files/home/.shortcuts/utils/inputs.fish
+source /data/data/com.termux/files/home/.shortcuts/utils/constants.fish
 
-set language (termux-dialog spinner \
-        -t "Choose the project language" \
-        -v fish,go,javascript,tinyscheme,json,yaml,markdown |
-        yq .text)
+set category_info "$(spinner "🏹 Choose the category" gui tui cli library)"
+test "$(get $category_info code)" != $success && exit
+set category (get $category_info text)
 
-set name (termux-dialog text \
-            -t "Choose the project name" |
-            yq .text)
+set language_info "$(spinner "💻 Choose the language" fish go javascript tinyscheme json yaml markdown)"
+test "$(get $language_info code)" != $success && exit
+set language (get $language_info text)
 
-set visibility (termux-dialog spinner \
-                -t "Choose the project visibility" \
-                -v public,private |
-                yq .text)
+set name_info (text "Choose the project name")
+test "$(get $name_info code)" != $success && exit
+set name (get $name_info text)
+
+set visibility_info "$(spinner "👁️ Choose the visibility" public private)"
+test "$(get $visibility_info code)" != $success && exit
+set visibility (get $visibility_info text)
 
 gh repo create "$language-$type-$name" --$visibility --license mit
