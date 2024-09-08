@@ -1,0 +1,17 @@
+#!/data/data/com.termux/files/usr/bin/env fish
+
+set type (termux-dialog spinner \
+    -t "Choose the project type" \
+    -v gui,tui,cli,library |
+    yq .text)
+
+set language (termux-dialog spinner \
+        -t "Choose the project language" \
+        -v fish,go,javascript,tinyscheme,json,yaml,markdown |
+        yq .text)
+
+set name (termux-dialog text \
+            -t "Choose the project name" |
+            yq .text)
+
+gh repo create "$language-$type-$name" --license mit
